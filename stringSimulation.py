@@ -196,10 +196,10 @@ parsingTable={
     }
 }
 
-string='id*id+id$'
-
 # Input string must be space delimeted
-string='id * id + id $' # Need to think of a more dynamic logic
+string='id*id+id$'
+for element in terminals:
+    string=string.replace(element,element+' ')
 stringTemp=string.split(' ')
 
 # To check whether the action
