@@ -84,7 +84,6 @@ def FIRST(X):
 							for sf in symbol_first:
 								if sf != '^':
 									first.add(sf)
-
 							if '^' not in symbol_first:
 								break
 
@@ -106,9 +105,9 @@ def FIRST(X):
 follow_seen = []
 def FOLLOW(A):
 	global follow_seen
-	follow = set([])
 	follow_seen.append(A)
-
+	
+	follow = set([])
 	if A == start:
 		follow.add('$')
 
@@ -128,11 +127,20 @@ def FOLLOW(A):
 	
 	# print("printed follow =", follow)
 	return follow 
-
+#%%
 print('\nFIRST:-')
-for head in gram:
-	print(f'{head} = {FIRST(head)}')
+with open('first.txt','w') as f:
+	for head in gram:
+		print(f'{head} = {FIRST(head)}')
+		f.write(f'{head}:{FIRST(head)}\n')
+	
 
 print('\nFollow:-')
-for head in gram:
-	print(f'{head} = {FOLLOW(head)}')
+with open('follow.txt','w') as f:
+	for head in gram:
+		print(f'{head} = {FOLLOW(head)}')
+		f.write(f'{head}:{FOLLOW(head)}\n')
+#%%
+with open('columns.txt','w') as f:
+	for i in t:
+		f.write(f'{i}\n')
