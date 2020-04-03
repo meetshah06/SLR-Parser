@@ -1,10 +1,12 @@
 # SLR-Parser
 
-gram is a dictionary containing key as the symbol on the left and the value containing a list of list of all productions
-Everything else is a set
+### First & Follow 
 
-gram - dictionary  
-terminals - set  
-nonterminals - set  
-FIRST AND FOLLOW are functions which return a set  
-In your code you can directly call FOLLOW('E') / FIRST('E') which will return a set containing all elements in follow / first of E  
+* FIRST and FOLLOW are functions which return a set.  
+* One can can directly call FIRST('E') or FOLLOW('E') where either of them return a set containing the elements of first and follow of E. 
+* gram is a dictionary with key, value pairs where the key is the symbol on the left and the value contains a 2D list (list of list) of all productions
+* Every other data structure used is a set.
+
+1) gram - dictionary  
+2) terminals - set  
+3) nonterminals - set  
