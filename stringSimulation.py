@@ -197,7 +197,7 @@ parsingTable={
 }
 
 # Input string must be space delimeted
-string='id*id+id$'
+string='id*id+i$'
 for element in terminals:
     string=string.replace(element,element+' ')
 stringTemp=string.split(' ')
@@ -253,6 +253,15 @@ while(True):
         print('REJECTED :(')
         break
 
+    # If item does not exist in the Parsing Table
+    # ie a KeyError occurs, break the loop and
+    # display 'REJECTED'
+    try:
+        parsingTable[stackEnd]['action'][symbol]
+    except KeyError:
+        print('REJECTED')
+        break
+
     # Logic for action swap
     if(isSwap(parsingTable[stackEnd]['action'][symbol])):
         symbol=stringTemp.pop(0) # Pop and acquire the latest symbol from the string (id)
@@ -272,7 +281,7 @@ while(True):
         # and terminals present within the production rule
         # at the actionNumber
         length=0
-        for item in list(variables+terminals):
+        for symbol in list(variables+terminals):
             length+=productionRHS[0].count(item)
 
         # Pop 'length' number of elements from stack
