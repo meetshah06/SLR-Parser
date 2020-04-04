@@ -18,7 +18,11 @@ f2 = open('./Text Files/follow.txt','r').read().splitlines()
 follow = dict({})
 for i in f2:
 	x,y=i.split(':')
+	y=y.split(';')[:-1]
+	y=list(y)
+	print(y)
 	follow[x]=y
+	
 del f2
 #%%
 f3 = open('./Text Files/columns.txt','r').read().splitlines()
@@ -110,30 +114,24 @@ for state,prods in itemset.items():
 
 #%%
 for k,y in follow.items():
-	#print(k)
+
 	for state,prods in itemset.items():
 		for src,dest in prods.items():
 			temp = dest.split('|')
 			for item in temp:
 				loc = item.find('.')
 				if loc!=0 and loc==len(item)-1:
-					#parsetable.at[int(state.lstrip('I')),]
-					#print(state,item)
 					which = getProductionNum(src,item)
-					#print(which)
-					new = follow[k].replace("'",'')
-					new = new.replace("{",'')
-					new = new.replace("}",'')
-					new = new.replace(",",'')
+					new = y
 					print(new)
 					for i in new:
-						#get=parsetable.at[int(state.lstrip('I')),i]
-						#print(get)
-						if which!=None: #and get!=r'-':
+						get=parsetable.at[int(state.lstrip('I')),i]
+						if which!=None and get=='-':
+
 							parsetable.at[int(state.lstrip('I')),i]='r'+str(which)
+
 #%%
-parsetable=parsetable.drop(parsetable.columns[-1],axis=1)
-#%%	
+# generating Parsetable as dictionary and 
 ptdict = parsetable.to_dict()
 ptcsv = parsetable.to_csv('./Text Files/ptcsv.csv',header=True,index=False)					
 					

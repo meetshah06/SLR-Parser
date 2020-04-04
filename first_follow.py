@@ -3,7 +3,7 @@ gram = {}
 nonterminals = set([])
 terminals = set([])
 
-with open('grammar2.txt') as grammar_file:
+with open('./Text Files/grammar2.txt') as grammar_file:
 	grammar = grammar_file.read().splitlines()
 
 # print(grammar)
@@ -129,18 +129,22 @@ def FOLLOW(A):
 	return follow 
 #%%
 print('\nFIRST:-')
-with open('first.txt','w') as f:
+with open('./Text Files/first.txt','w') as f:
 	for head in gram:
 		print(f'{head} = {FIRST(head)}')
 		f.write(f'{head}:{FIRST(head)}\n')
 	
 
 print('\nFollow:-')
-with open('follow.txt','w') as f:
+with open('./Text Files/follow.txt','w') as f:
 	for head in gram:
 		print(f'{head} = {FOLLOW(head)}')
-		f.write(f'{head}:{FOLLOW(head)}\n')
+		temp=FOLLOW(head)
+		s=''
+		for i in temp:
+			s+=i+';'
+		f.write(f'{head}:{s}\n')
 #%%
-with open('columns.txt','w') as f:
+with open('./Text Files/columns.txt','w') as f:
 	for i in t:
 		f.write(f'{i}\n')
