@@ -100,12 +100,12 @@ del i,k,name,temp
 #%%
 # setting accept entries in parsetable
 for state,prods in itemset.items():
-	
+
 	for k,v in prods.items():
-		
+
 		if k.rstrip("'")==v.rstrip('.'):
 			parsetable.at[int(state.lstrip('I')),'$']='acc'
-	
+
 
 
 #%%
@@ -133,7 +133,6 @@ for k,y in follow.items():
 							parsetable.at[int(state.lstrip('I')),i]='r'+str(which)
 #%%
 parsetable=parsetable.drop(parsetable.columns[-1],axis=1)
-#%%	
+#%%
 ptdict = parsetable.to_dict()
-ptcsv = parsetable.to_csv('./Text Files/ptcsv.csv',header=True,index=False)					
-					
+ptcsv = parsetable.to_csv('./Text Files/ptcsv.csv',header=True,index=False)

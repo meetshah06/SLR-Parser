@@ -197,10 +197,11 @@ parsingTable={
 }
 
 # Input string must be space delimeted
-string='id*id+i$'
+string='id*id+id$'
 for element in terminals:
     string=string.replace(element,element+' ')
 stringTemp=string.split(' ')
+print(stringTemp)
 
 # To check whether the action
 # demands for swapping or not
@@ -281,7 +282,7 @@ while(True):
         # and terminals present within the production rule
         # at the actionNumber
         length=0
-        for symbol in list(variables+terminals):
+        for item in list(variables+terminals):
             length+=productionRHS[0].count(item)
 
         # Pop 'length' number of elements from stack
